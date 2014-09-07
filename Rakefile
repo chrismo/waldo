@@ -18,5 +18,6 @@ CLEAN << Rake::FileList['spec/*.js']
 
 desc "Copy .coffee scripts to #{HUBOT_ROOT}. Set HUBOT_ROOT env to override destination."
 task :deploy do
-  FileUtils.cp(Dir['./js/**/*.coffee'], File.join(HUBOT_ROOT, 'scripts'), verbose: true)
+  FileUtils.cp(Dir['./js/*.coffee'], File.join(HUBOT_ROOT, 'scripts'), verbose: true)
+  FileUtils.cp_r('./js/waldo', File.join(HUBOT_ROOT, 'scripts'), verbose: true)
 end

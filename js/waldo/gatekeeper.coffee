@@ -1,8 +1,9 @@
 _ = require('underscore')
 
 module.exports = class GateKeeper
-  constructor: () ->
-    @userRooms = {}
+  constructor: (store) ->
+    store ||= {}
+    @userRooms = (store.waldo ||= {})
 
   addUserToRoom: (user, roomNumber) ->
     @userRooms[user] ||= []
@@ -12,4 +13,4 @@ module.exports = class GateKeeper
     @userRooms[user] = _.without(@userRooms[user], roomNumber)
 
   getRoomsForUser: (user, roomNumber) ->
-    @userRooms[user]
+    @userRooms[user] || []
